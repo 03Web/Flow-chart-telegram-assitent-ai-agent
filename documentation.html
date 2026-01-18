@@ -1,542 +1,741 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dokumentasi Lengkap - Asisten Pribadi AI</title>
     <style>
-        * {
-            box-sizing: border-box;
-        }
+      * {
+        box-sizing: border-box;
+      }
 
-        html {
-            scroll-behavior: smooth;
-        }
+      html {
+        scroll-behavior: smooth;
+      }
 
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      }
+
+      .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 10px 20px;
+        background: #667eea;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: all 0.3s;
+      }
+
+      .back-link:hover {
+        background: #764ba2;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 10px;
+        font-size: 2.5em;
+      }
+
+      .subtitle {
+        text-align: center;
+        color: #666;
+        margin-bottom: 30px;
+        font-size: 1.1em;
+      }
+
+      .docs-section {
+        margin-bottom: 40px;
+        padding: 25px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        border-left: 5px solid #667eea;
+      }
+
+      .docs-section h2 {
+        color: #667eea;
+        margin-top: 0;
+        margin-bottom: 20px;
+        font-size: 1.8em;
+        border-bottom: 3px solid #667eea;
+        padding-bottom: 10px;
+      }
+
+      .docs-section h3 {
+        color: #667eea;
+        margin-top: 25px;
+        margin-bottom: 15px;
+        font-size: 1.4em;
+        border-bottom: 2px solid #667eea;
+        padding-bottom: 5px;
+      }
+
+      .docs-section h4 {
+        color: #764ba2;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: 1.2em;
+      }
+
+      .docs-section ul,
+      .docs-section ol {
+        margin: 15px 0;
+        padding-left: 30px;
+      }
+
+      .docs-section li {
+        margin: 10px 0;
+      }
+
+      .docs-section code {
+        background: #f4f4f4;
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-family: "Courier New", monospace;
+        font-size: 0.9em;
+        color: #e83e8c;
+      }
+
+      .docs-section strong {
+        color: #333;
+        font-weight: 600;
+      }
+
+      .docs-note {
+        background: #fff3cd;
+        border-left: 4px solid #ffc107;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 4px;
+      }
+
+      .docs-tip {
+        background: #d1ecf1;
+        border-left: 4px solid #17a2b8;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 4px;
+      }
+
+      .docs-warning {
+        background: #f8d7da;
+        border-left: 4px solid #dc3545;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 4px;
+      }
+
+      @media (max-width: 768px) {
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            line-height: 1.6;
+          padding: 10px;
         }
 
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 10px 20px;
-            background: #667eea;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: all 0.3s;
-        }
-
-        .back-link:hover {
-            background: #764ba2;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+          padding: 15px;
         }
 
         h1 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 10px;
-            font-size: 2.5em;
-        }
-
-        .subtitle {
-            text-align: center;
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 1.1em;
+          font-size: 1.8em;
         }
 
         .docs-section {
-            margin-bottom: 40px;
-            padding: 25px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            border-left: 5px solid #667eea;
+          padding: 15px;
         }
 
         .docs-section h2 {
-            color: #667eea;
-            margin-top: 0;
-            margin-bottom: 20px;
-            font-size: 1.8em;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 10px;
+          font-size: 1.4em;
         }
 
         .docs-section h3 {
-            color: #667eea;
-            margin-top: 25px;
-            margin-bottom: 15px;
-            font-size: 1.4em;
-            border-bottom: 2px solid #667eea;
-            padding-bottom: 5px;
+          font-size: 1.2em;
         }
-
-        .docs-section h4 {
-            color: #764ba2;
-            margin-top: 20px;
-            margin-bottom: 10px;
-            font-size: 1.2em;
-        }
-
-        .docs-section ul, .docs-section ol {
-            margin: 15px 0;
-            padding-left: 30px;
-        }
-
-        .docs-section li {
-            margin: 10px 0;
-        }
-
-        .docs-section code {
-            background: #f4f4f4;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9em;
-            color: #e83e8c;
-        }
-
-        .docs-section strong {
-            color: #333;
-            font-weight: 600;
-        }
-
-        .docs-note {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 4px;
-        }
-
-        .docs-tip {
-            background: #d1ecf1;
-            border-left: 4px solid #17a2b8;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 4px;
-        }
-
-        .docs-warning {
-            background: #f8d7da;
-            border-left: 4px solid #dc3545;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 4px;
-        }
-
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-
-            .container {
-                padding: 15px;
-            }
-
-            h1 {
-                font-size: 1.8em;
-            }
-
-            .docs-section {
-                padding: 15px;
-            }
-
-            .docs-section h2 {
-                font-size: 1.4em;
-            }
-
-            .docs-section h3 {
-                font-size: 1.2em;
-            }
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="container">
-        <a href="view_flowchart.html" class="back-link">← Kembali ke Flowchart</a>
-        
-        <h1>📖 Dokumentasi Lengkap</h1>
-        <p class="subtitle">Asisten Pribadi AI Telegram Bot v3.0</p>
+      <a href="view_flowchart.html" class="back-link">← Kembali ke Flowchart</a>
 
-        <!-- DOKUMENTASI 1 -->
-        <div class="docs-section">
-            <h2>📖 Apa Itu Sistem Asisten Pribadi AI Telegram Bot?</h2>
-            <p>
-                <strong>Sistem Asisten Pribadi AI Telegram Bot</strong> adalah sebuah bot Telegram canggih yang menggunakan teknologi AI (Artificial Intelligence) untuk membantu kamu mengelola berbagai aspek kehidupan sehari-hari. Bayangkan seperti punya asisten pribadi yang selalu siap 24/7 di Telegram kamu!
-            </p>
-            <p>
-                Bot ini bukan cuma bisa chat biasa. Dia bisa:
-            </p>
-            <ul>
-                <li>💬 <strong>Chat dengan AI</strong> - Ngobrol layaknya chat dengan teman, tapi AI yang super pintar</li>
-                <li>🧠 <strong>Thinking Mode</strong> - Mode analisis mendalam untuk pertanyaan kompleks</li>
-                <li>🎭 <strong>Multi-Agent Debate</strong> - 3 AI berdebat untuk hasil terbaik</li>
-                <li>🎤 <strong>Voice Commands</strong> - Bicara langsung, bot akan mengerti dan eksekusi</li>
-                <li>🧠 <strong>Memory System</strong> - Bot ingat semua yang penting untuk kamu</li>
-                <li>📁 <strong>Google Services</strong> - Integrasi dengan Drive, Sheets, Docs, Calendar, Gmail</li>
-                <li>💰 <strong>LifeOS</strong> - Kelola keuangan, todo list, notes, dan lebih banyak lagi</li>
-            </ul>
-            <div class="docs-tip">
-                <strong>💡 Tips:</strong> Bot ini menggunakan teknologi DeepSeek AI dan OpenAI untuk memberikan respon yang akurat dan kontekstual. Semua data kamu aman dan tersimpan dengan baik!
-            </div>
+      <h1>📖 Dokumentasi Lengkap</h1>
+      <p class="subtitle">Assistent Pribadi Telegram AI-Agent v3.0</p>
+
+      <!-- DOKUMENTASI 1 -->
+      <div class="docs-section">
+        <h2>📖 Apa Itu Sistem Asisten Pribadi AI Telegram Bot?</h2>
+        <p>
+          <strong>Sistem Asisten Pribadi AI-Agent</strong> adalah sebuah bot
+          Telegram canggih yang menggunakan teknologi AI (Artificial
+          Intelligence) untuk membantu kamu mengelola berbagai aspek kehidupan
+          sehari-hari. Bayangkan seperti punya asisten pribadi yang selalu siap
+          24/7 di Telegram kamu!
+        </p>
+        <p>Bot ini bukan cuma bisa chat biasa. Dia bisa:</p>
+        <ul>
+          <li>
+            💬 <strong>Chat dengan AI</strong> - Ngobrol layaknya chat dengan
+            teman, tapi AI yang super pintar
+          </li>
+          <li>
+            🧠 <strong>Thinking Mode</strong> - Mode analisis mendalam untuk
+            pertanyaan kompleks
+          </li>
+          <li>
+            🎭 <strong>Multi-Agent Debate</strong> - 3 AI berdebat untuk hasil
+            terbaik
+          </li>
+          <li>
+            🎤 <strong>Voice Commands</strong> - Bicara langsung, bot akan
+            mengerti dan eksekusi
+          </li>
+          <li>
+            🧠 <strong>Memory System</strong> - Bot ingat semua yang penting
+            untuk kamu
+          </li>
+          <li>
+            📁 <strong>Google Services</strong> - Integrasi dengan Drive,
+            Sheets, Docs, Calendar, Gmail
+          </li>
+          <li>
+            💰 <strong>LifeOS</strong> - Kelola keuangan, todo list, notes, dan
+            lebih banyak lagi
+          </li>
+        </ul>
+        <div class="docs-tip">
+          <strong>💡 Tips:</strong> Bot ini menggunakan teknologi DeepSeek AI
+          dan OpenAI untuk memberikan respon yang akurat dan kontekstual. Semua
+          data kamu aman dan tersimpan dengan baik!
+        </div>
+      </div>
+
+      <!-- DOKUMENTASI 2 -->
+      <div class="docs-section">
+        <h2>🎯 Fitur-Fitur Utama</h2>
+
+        <h3>1. Mode Chat (<code>/chat</code>)</h3>
+        <p>
+          Mode chat adalah mode paling cepat dan ringan. Cocok untuk pertanyaan
+          sehari-hari yang butuh jawaban cepat. AI akan merespon dengan cepat
+          tanpa analisis mendalam.
+        </p>
+        <ul>
+          <li>⚡ <strong>Cepat</strong> - Respon dalam hitungan detik</li>
+          <li>
+            💡 <strong>Ringan</strong> - Tidak banyak memproses, langsung ke
+            intinya
+          </li>
+          <li>🎯 <strong>Simple</strong> - Cocok untuk pertanyaan sederhana</li>
+        </ul>
+
+        <h3>2. Mode Thinking (<code>/thinking</code>)</h3>
+        <p>
+          Mode thinking adalah mode analisis mendalam. AI akan "berpikir" lebih
+          lama untuk memberikan jawaban yang lebih akurat dan detail. Cocok
+          untuk pertanyaan kompleks yang butuh analisis.
+        </p>
+        <ul>
+          <li>
+            🧠 <strong>Deep Analysis</strong> - Analisis mendalam sebelum
+            menjawab
+          </li>
+          <li>
+            📊 <strong>Multi-Stage Processing</strong> - Proses dalam beberapa
+            tahap
+          </li>
+          <li>
+            🎯 <strong>Akurat</strong> - Hasil lebih akurat dan terpercaya
+          </li>
+        </ul>
+
+        <h3>3. Mode Debat (<code>/debat</code>)</h3>
+        <p>
+          Mode debat menggunakan sistem 4-stage dengan 3 AI berbeda yang
+          "berdebat" untuk mendapatkan jawaban terbaik. Ini adalah fitur paling
+          canggih!
+        </p>
+        <h4>4-Stage System:</h4>
+        <ol>
+          <li>
+            <strong>ARCHITECT</strong> - Menganalisis pertanyaan dan menentukan
+            data yang dibutuhkan
+          </li>
+          <li>
+            <strong>GATHERER</strong> - Mengumpulkan data dari Google Search,
+            Memory, atau keduanya
+          </li>
+          <li>
+            <strong>WRITER & CRITIC</strong> - Menulis draft jawaban dan
+            mengkritiknya
+          </li>
+          <li>
+            <strong>JUDGE</strong> - Menyintesis jawaban final dengan reasoning
+            yang jelas
+          </li>
+        </ol>
+        <div class="docs-note">
+          <strong>⚠️ Catatan:</strong> Mode debat membutuhkan waktu lebih lama
+          karena proses yang kompleks, tapi hasilnya sangat worth it!
         </div>
 
-        <!-- DOKUMENTASI 2 -->
-        <div class="docs-section">
-            <h2>🎯 Fitur-Fitur Utama</h2>
-            
-            <h3>1. Mode Chat (<code>/chat</code>)</h3>
-            <p>
-                Mode chat adalah mode paling cepat dan ringan. Cocok untuk pertanyaan sehari-hari yang butuh jawaban cepat. AI akan merespon dengan cepat tanpa analisis mendalam.
-            </p>
-            <ul>
-                <li>⚡ <strong>Cepat</strong> - Respon dalam hitungan detik</li>
-                <li>💡 <strong>Ringan</strong> - Tidak banyak memproses, langsung ke intinya</li>
-                <li>🎯 <strong>Simple</strong> - Cocok untuk pertanyaan sederhana</li>
-            </ul>
+        <h3>4. Voice Router</h3>
+        <p>
+          Voice Router adalah fitur yang memungkinkan kamu berbicara langsung ke
+          bot. Bot akan:
+        </p>
+        <ul>
+          <li>
+            🎤 <strong>Transcribe</strong> - Mengubah suara menjadi teks
+            menggunakan Whisper AI
+          </li>
+          <li>
+            🧠 <strong>Detect Intent</strong> - Mengenali maksud kamu (simpan
+            memory, catat pengeluaran, dll)
+          </li>
+          <li>
+            ⚡ <strong>Auto Execute</strong> - Langsung eksekusi jika confidence
+            tinggi (≥80%)
+          </li>
+          <li>
+            ❓ <strong>Ask Confirmation</strong> - Tanya konfirmasi jika kurang
+            yakin
+          </li>
+        </ul>
+        <p>
+          <strong>Intent yang didukung:</strong> memory_save, memory_recall,
+          keuangan, todo, note, summary, drive, docs, calendar, email, sheet,
+          search, image, chat
+        </p>
 
-            <h3>2. Mode Thinking (<code>/thinking</code>)</h3>
-            <p>
-                Mode thinking adalah mode analisis mendalam. AI akan "berpikir" lebih lama untuk memberikan jawaban yang lebih akurat dan detail. Cocok untuk pertanyaan kompleks yang butuh analisis.
-            </p>
-            <ul>
-                <li>🧠 <strong>Deep Analysis</strong> - Analisis mendalam sebelum menjawab</li>
-                <li>📊 <strong>Multi-Stage Processing</strong> - Proses dalam beberapa tahap</li>
-                <li>🎯 <strong>Akurat</strong> - Hasil lebih akurat dan terpercaya</li>
-            </ul>
+        <h3>5. Memory System (RAG)</h3>
+        <p>
+          Memory System menggunakan teknologi RAG (Retrieval-Augmented
+          Generation) dengan Pinecone Vector Database. Bot bisa mengingat dan
+          mengambil informasi penting untuk kamu.
+        </p>
+        <h4>Cara Kerja:</h4>
+        <ol>
+          <li>
+            <strong>Save Memory</strong> - Simpan informasi penting dengan
+            <code>/ingat</code>
+          </li>
+          <li>
+            <strong>Generate Embedding</strong> - AI mengubah teks menjadi
+            vector 1536 dimensi
+          </li>
+          <li>
+            <strong>Store in Pinecone</strong> - Disimpan di database vector
+            dengan metadata
+          </li>
+          <li>
+            <strong>Search Memory</strong> - Cari dengan
+            <code>/ingatan keyword</code> menggunakan similarity search
+          </li>
+          <li>
+            <strong>Auto-Save</strong> - Bot otomatis menyimpan info penting
+            dari chat
+          </li>
+        </ol>
+        <p>
+          <strong>Kategori Memory:</strong> journal, learning, important,
+          personal, work
+        </p>
 
-            <h3>3. Mode Debat (<code>/debat</code>)</h3>
-            <p>
-                Mode debat menggunakan sistem 4-stage dengan 3 AI berbeda yang "berdebat" untuk mendapatkan jawaban terbaik. Ini adalah fitur paling canggih!
-            </p>
-            <h4>4-Stage System:</h4>
-            <ol>
-                <li><strong>ARCHITECT</strong> - Menganalisis pertanyaan dan menentukan data yang dibutuhkan</li>
-                <li><strong>GATHERER</strong> - Mengumpulkan data dari Google Search, Memory, atau keduanya</li>
-                <li><strong>WRITER & CRITIC</strong> - Menulis draft jawaban dan mengkritiknya</li>
-                <li><strong>JUDGE</strong> - Menyintesis jawaban final dengan reasoning yang jelas</li>
-            </ol>
-            <div class="docs-note">
-                <strong>⚠️ Catatan:</strong> Mode debat membutuhkan waktu lebih lama karena proses yang kompleks, tapi hasilnya sangat worth it!
-            </div>
-
-            <h3>4. Voice Router</h3>
-            <p>
-                Voice Router adalah fitur yang memungkinkan kamu berbicara langsung ke bot. Bot akan:
-            </p>
-            <ul>
-                <li>🎤 <strong>Transcribe</strong> - Mengubah suara menjadi teks menggunakan Whisper AI</li>
-                <li>🧠 <strong>Detect Intent</strong> - Mengenali maksud kamu (simpan memory, catat pengeluaran, dll)</li>
-                <li>⚡ <strong>Auto Execute</strong> - Langsung eksekusi jika confidence tinggi (≥80%)</li>
-                <li>❓ <strong>Ask Confirmation</strong> - Tanya konfirmasi jika kurang yakin</li>
-            </ul>
-            <p>
-                <strong>Intent yang didukung:</strong> memory_save, memory_recall, keuangan, todo, note, summary, drive, docs, calendar, email, sheet, search, image, chat
-            </p>
-
-            <h3>5. Memory System (RAG)</h3>
-            <p>
-                Memory System menggunakan teknologi RAG (Retrieval-Augmented Generation) dengan Pinecone Vector Database. Bot bisa mengingat dan mengambil informasi penting untuk kamu.
-            </p>
-            <h4>Cara Kerja:</h4>
-            <ol>
-                <li><strong>Save Memory</strong> - Simpan informasi penting dengan <code>/ingat</code></li>
-                <li><strong>Generate Embedding</strong> - AI mengubah teks menjadi vector 1536 dimensi</li>
-                <li><strong>Store in Pinecone</strong> - Disimpan di database vector dengan metadata</li>
-                <li><strong>Search Memory</strong> - Cari dengan <code>/ingatan keyword</code> menggunakan similarity search</li>
-                <li><strong>Auto-Save</strong> - Bot otomatis menyimpan info penting dari chat</li>
-            </ol>
-            <p>
-                <strong>Kategori Memory:</strong> journal, learning, important, personal, work
-            </p>
-
-            <h3>6. Google Services Integration</h3>
-            <p>
-                Bot terintegrasi penuh dengan Google Workspace. Kamu bisa mengelola semua Google services langsung dari Telegram!
-            </p>
-            <h4>Services yang Tersedia:</h4>
-            <ul>
-                <li>📁 <strong>Google Drive</strong> - Upload, search, create folder, delete files</li>
-                <li>📊 <strong>Google Sheets</strong> - Baca, analisis, insert data, buat sheet baru</li>
-                <li>📝 <strong>Google Docs</strong> - Create, read, edit dokumen</li>
-                <li>📅 <strong>Google Calendar</strong> - List events, add event, parse tanggal</li>
-                <li>📧 <strong>Gmail</strong> - Baca inbox, read email, draft reply</li>
-                <li>📋 <strong>Google Forms</strong> - Buat form dengan AI</li>
-            </ul>
-            <div class="docs-tip">
-                <strong>💡 Tips:</strong> Semua operasi Google Services bisa menggunakan Multi-Agent Debate untuk hasil yang lebih akurat!
-            </div>
+        <h3>6. Google Services Integration</h3>
+        <p>
+          Bot terintegrasi penuh dengan Google Workspace. Kamu bisa mengelola
+          semua Google services langsung dari Telegram!
+        </p>
+        <h4>Services yang Tersedia:</h4>
+        <ul>
+          <li>
+            📁 <strong>Google Drive</strong> - Upload, search, create folder,
+            delete files
+          </li>
+          <li>
+            📊 <strong>Google Sheets</strong> - Baca, analisis, insert data,
+            buat sheet baru
+          </li>
+          <li>📝 <strong>Google Docs</strong> - Create, read, edit dokumen</li>
+          <li>
+            📅 <strong>Google Calendar</strong> - List events, add event, parse
+            tanggal
+          </li>
+          <li>
+            📧 <strong>Gmail</strong> - Baca inbox, read email, draft reply
+          </li>
+          <li>📋 <strong>Google Forms</strong> - Buat form dengan AI</li>
+        </ul>
+        <div class="docs-tip">
+          <strong>💡 Tips:</strong> Semua operasi Google Services bisa
+          menggunakan Multi-Agent Debate untuk hasil yang lebih akurat!
         </div>
+      </div>
 
-        <!-- DOKUMENTASI 3 -->
-        <div class="docs-section">
-            <h2>🏗️ Arsitektur Sistem</h2>
-            <p>
-                Sistem ini dibangun dengan arsitektur modular yang memisahkan setiap fungsi ke dalam handler dan service terpisah. Ini membuat sistem mudah dirawat dan dikembangkan.
-            </p>
+      <!-- DOKUMENTASI 3 -->
+      <div class="docs-section">
+        <h2>🏗️ Arsitektur Sistem</h2>
+        <p>
+          Sistem ini dibangun dengan arsitektur modular yang memisahkan setiap
+          fungsi ke dalam handler dan service terpisah. Ini membuat sistem mudah
+          dirawat dan dikembangkan.
+        </p>
 
-            <h3>Layer 1: Handler Layer</h3>
-            <p>
-                Handler layer adalah lapisan yang menangani interaksi dengan user melalui Telegram. Setiap handler punya tanggung jawab spesifik:
-            </p>
-            <ul>
-                <li><strong>AI Handler</strong> - Menangani semua request AI (chat, thinking, debat)</li>
-                <li><strong>Voice Router</strong> - Menangani voice messages dan intent detection</li>
-                <li><strong>Memory Handler</strong> - Menangani operasi memory (save, search, delete)</li>
-                <li><strong>LifeOS Handler</strong> - Menangani keuangan, todo, notes</li>
-                <li><strong>Google Handlers</strong> - Menangani semua Google services</li>
-            </ul>
+        <h3>Layer 1: Handler Layer</h3>
+        <p>
+          Handler layer adalah lapisan yang menangani interaksi dengan user
+          melalui Telegram. Setiap handler punya tanggung jawab spesifik:
+        </p>
+        <ul>
+          <li>
+            <strong>AI Handler</strong> - Menangani semua request AI (chat,
+            thinking, debat)
+          </li>
+          <li>
+            <strong>Voice Router</strong> - Menangani voice messages dan intent
+            detection
+          </li>
+          <li>
+            <strong>Memory Handler</strong> - Menangani operasi memory (save,
+            search, delete)
+          </li>
+          <li>
+            <strong>LifeOS Handler</strong> - Menangani keuangan, todo, notes
+          </li>
+          <li>
+            <strong>Google Handlers</strong> - Menangani semua Google services
+          </li>
+        </ul>
 
-            <h3>Layer 2: Service Layer</h3>
-            <p>
-                Service layer adalah lapisan yang berkomunikasi dengan external services dan API:
-            </p>
-            <ul>
-                <li><strong>AI Client</strong> - Komunikasi dengan DeepSeek API dan OpenAI API</li>
-                <li><strong>Memory Service</strong> - Komunikasi dengan Pinecone Vector Database</li>
-                <li><strong>Google Client</strong> - Komunikasi dengan Google APIs menggunakan OAuth2</li>
-            </ul>
+        <h3>Layer 2: Service Layer</h3>
+        <p>
+          Service layer adalah lapisan yang berkomunikasi dengan external
+          services dan API:
+        </p>
+        <ul>
+          <li>
+            <strong>AI Client</strong> - Komunikasi dengan DeepSeek API dan
+            OpenAI API
+          </li>
+          <li>
+            <strong>Memory Service</strong> - Komunikasi dengan Pinecone Vector
+            Database
+          </li>
+          <li>
+            <strong>Google Client</strong> - Komunikasi dengan Google APIs
+            menggunakan OAuth2
+          </li>
+        </ul>
 
-            <h3>Layer 3: External Services</h3>
-            <p>
-                External services adalah semua API dan service yang digunakan sistem:
-            </p>
-            <ul>
-                <li><strong>DeepSeek API</strong> - Untuk chat dan reasoning (DeepSeek-Chat & DeepSeek-Reasoner)</li>
-                <li><strong>OpenAI API</strong> - Untuk embedding, vision, TTS, dan Whisper</li>
-                <li><strong>Pinecone</strong> - Vector database untuk memory storage</li>
-                <li><strong>Google APIs</strong> - Drive, Sheets, Docs, Calendar, Gmail, Forms</li>
-                <li><strong>Google Custom Search</strong> - Untuk pencarian informasi dari web</li>
-            </ul>
+        <h3>Layer 3: External Services</h3>
+        <p>
+          External services adalah semua API dan service yang digunakan sistem:
+        </p>
+        <ul>
+          <li>
+            <strong>DeepSeek API</strong> - Untuk chat dan reasoning
+            (DeepSeek-Chat & DeepSeek-Reasoner)
+          </li>
+          <li>
+            <strong>OpenAI API</strong> - Untuk embedding, vision, TTS, dan
+            Whisper
+          </li>
+          <li>
+            <strong>Pinecone</strong> - Vector database untuk memory storage
+          </li>
+          <li>
+            <strong>Google APIs</strong> - Drive, Sheets, Docs, Calendar, Gmail,
+            Forms
+          </li>
+          <li>
+            <strong>Google Custom Search</strong> - Untuk pencarian informasi
+            dari web
+          </li>
+        </ul>
 
-            <h3>Layer 4: Data Storage</h3>
-            <ul>
-                <li><strong>SQLite Database</strong> - Menyimpan user settings dan konfigurasi</li>
-                <li><strong>Google Sheets</strong> - Menyimpan data LifeOS (keuangan, todo, notes)</li>
-                <li><strong>Pinecone</strong> - Menyimpan vector embeddings untuk memory</li>
-            </ul>
+        <h3>Layer 4: Data Storage</h3>
+        <ul>
+          <li>
+            <strong>SQLite Database</strong> - Menyimpan user settings dan
+            konfigurasi
+          </li>
+          <li>
+            <strong>Google Sheets</strong> - Menyimpan data LifeOS (keuangan,
+            todo, notes)
+          </li>
+          <li>
+            <strong>Pinecone</strong> - Menyimpan vector embeddings untuk memory
+          </li>
+        </ul>
 
-            <div class="docs-note">
-                <strong>📌 Catatan Penting:</strong> Semua data user disimpan dengan aman. Sistem mendukung multi-tenant mode untuk beberapa customer dalam satu instance.
-            </div>
+        <div class="docs-note">
+          <strong>📌 Catatan Penting:</strong> Semua data user disimpan dengan
+          aman. Sistem mendukung multi-tenant mode untuk beberapa customer dalam
+          satu instance.
         </div>
+      </div>
 
-        <!-- DOKUMENTASI 4 -->
-        <div class="docs-section">
-            <h2>🔄 Alur Kerja Sistem</h2>
-            
-            <h3>Alur Chat Text Biasa</h3>
-            <ol>
-                <li>User kirim pesan text ke bot</li>
-                <li>Bot cek apakah ada memory relevan di Pinecone</li>
-                <li>Jika ada, tambahkan context dari memory</li>
-                <li>Proses dengan AI (DeepSeek-Chat atau DeepSeek-Reasoner)</li>
-                <li>Stream response ke user</li>
-                <li>AI analisis apakah info penting, jika ya auto-save ke memory</li>
-            </ol>
+      <!-- DOKUMENTASI 4 -->
+      <div class="docs-section">
+        <h2>🔄 Alur Kerja Sistem</h2>
 
-            <h3>Alur Voice Message</h3>
-            <ol>
-                <li>User kirim voice message</li>
-                <li>Whisper API transcribe audio ke text</li>
-                <li>AI detect intent dari text (memory_save, keuangan, dll)</li>
-                <li>Jika confidence ≥80%, auto execute</li>
-                <li>Jika confidence <80%, tanya konfirmasi user</li>
-                <li>Execute action sesuai intent</li>
-                <li>Kirim response (bisa dengan TTS voice juga)</li>
-            </ol>
+        <h3>Alur Chat Text Biasa</h3>
+        <ol>
+          <li>User kirim pesan text ke bot</li>
+          <li>Bot cek apakah ada memory relevan di Pinecone</li>
+          <li>Jika ada, tambahkan context dari memory</li>
+          <li>Proses dengan AI (DeepSeek-Chat atau DeepSeek-Reasoner)</li>
+          <li>Stream response ke user</li>
+          <li>AI analisis apakah info penting, jika ya auto-save ke memory</li>
+        </ol>
 
-            <h3>Alur Multi-Agent Debate</h3>
-            <ol>
-                <li>User kirim <code>/thinking</code> atau <code>/debat</code></li>
-                <li><strong>STAGE 1 - ARCHITECT:</strong> DeepSeek-Reasoner analisis query dan tentukan data yang dibutuhkan</li>
-                <li><strong>STAGE 2 - GATHERER:</strong> Kumpulkan data dari Google Search, Memory, atau keduanya</li>
-                <li><strong>STAGE 3A - WRITER:</strong> DeepSeek-Chat generate draft answer</li>
-                <li><strong>STAGE 3B - CRITIC:</strong> DeepSeek-Chat evaluate dan kritik draft</li>
-                <li><strong>STAGE 4 - JUDGE:</strong> DeepSeek-Reasoner synthesize final answer dengan reasoning</li>
-                <li>Format dan kirim response ke user</li>
-            </ol>
+        <h3>Alur Voice Message</h3>
+        <ol>
+          <li>User kirim voice message</li>
+          <li>Whisper API transcribe audio ke text</li>
+          <li>AI detect intent dari text (memory_save, keuangan, dll)</li>
+          <li>Jika confidence ≥80%, auto execute</li>
+          <li>Jika confidence <80%, tanya konfirmasi user</li>
+          <li>Execute action sesuai intent</li>
+          <li>Kirim response (bisa dengan TTS voice juga)</li>
+        </ol>
 
-            <h3>Alur Memory Save</h3>
-            <ol>
-                <li>User kirim <code>/ingat text</code> atau AI detect info penting</li>
-                <li>AI detect kategori (journal/learning/important/personal/work)</li>
-                <li>Generate embedding menggunakan OpenAI Embedding API (1536 dimensi)</li>
-                <li>Prepare metadata (user_id, category, timestamp, summary, text)</li>
-                <li>Upsert ke Pinecone dengan vector + metadata</li>
-                <li>Konfirmasi ke user</li>
-            </ol>
+        <h3>Alur Multi-Agent Debate</h3>
+        <ol>
+          <li>User kirim <code>/thinking</code> atau <code>/debat</code></li>
+          <li>
+            <strong>STAGE 1 - ARCHITECT:</strong> DeepSeek-Reasoner analisis
+            query dan tentukan data yang dibutuhkan
+          </li>
+          <li>
+            <strong>STAGE 2 - GATHERER:</strong> Kumpulkan data dari Google
+            Search, Memory, atau keduanya
+          </li>
+          <li>
+            <strong>STAGE 3A - WRITER:</strong> DeepSeek-Chat generate draft
+            answer
+          </li>
+          <li>
+            <strong>STAGE 3B - CRITIC:</strong> DeepSeek-Chat evaluate dan
+            kritik draft
+          </li>
+          <li>
+            <strong>STAGE 4 - JUDGE:</strong> DeepSeek-Reasoner synthesize final
+            answer dengan reasoning
+          </li>
+          <li>Format dan kirim response ke user</li>
+        </ol>
 
-            <h3>Alur Memory Search</h3>
-            <ol>
-                <li>User kirim <code>/ingatan keyword</code></li>
-                <li>Generate query embedding</li>
-                <li>Vector similarity search di Pinecone (cosine distance)</li>
-                <li>Filter hasil dengan threshold ≥0.7</li>
-                <li>Return top-K memories</li>
-                <li>Jika menggunakan <code>/ingatan</code>, AI akan analisis dan synthesize hasil</li>
-                <li>Jika hanya list, tampilkan daftar memory</li>
-            </ol>
+        <h3>Alur Memory Save</h3>
+        <ol>
+          <li>
+            User kirim <code>/ingat text</code> atau AI detect info penting
+          </li>
+          <li>AI detect kategori (journal/learning/important/personal/work)</li>
+          <li>
+            Generate embedding menggunakan OpenAI Embedding API (1536 dimensi)
+          </li>
+          <li>
+            Prepare metadata (user_id, category, timestamp, summary, text)
+          </li>
+          <li>Upsert ke Pinecone dengan vector + metadata</li>
+          <li>Konfirmasi ke user</li>
+        </ol>
+
+        <h3>Alur Memory Search</h3>
+        <ol>
+          <li>User kirim <code>/ingatan keyword</code></li>
+          <li>Generate query embedding</li>
+          <li>Vector similarity search di Pinecone (cosine distance)</li>
+          <li>Filter hasil dengan threshold ≥0.7</li>
+          <li>Return top-K memories</li>
+          <li>
+            Jika menggunakan <code>/ingatan</code>, AI akan analisis dan
+            synthesize hasil
+          </li>
+          <li>Jika hanya list, tampilkan daftar memory</li>
+        </ol>
+      </div>
+
+      <!-- DOKUMENTASI 5 -->
+      <div class="docs-section">
+        <h2>💻 Teknologi yang Digunakan</h2>
+
+        <h3>AI & Machine Learning</h3>
+        <ul>
+          <li>
+            <strong>DeepSeek API</strong> - Model AI untuk chat dan reasoning
+            <ul>
+              <li>DeepSeek-Chat: Untuk chat cepat dan draft generation</li>
+              <li>DeepSeek-Reasoner: Untuk analisis mendalam dan reasoning</li>
+            </ul>
+          </li>
+          <li>
+            <strong>OpenAI API</strong> - Multiple services
+            <ul>
+              <li>GPT-4 Vision: Untuk analisis gambar</li>
+              <li>Whisper: Untuk transcribe audio ke text</li>
+              <li>Text-to-Speech: Untuk voice response</li>
+              <li>
+                Embedding API: Untuk generate vector embeddings (1536 dimensi)
+              </li>
+              <li>DALL-E: Untuk generate gambar</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h3>Database & Storage</h3>
+        <ul>
+          <li>
+            <strong>Pinecone</strong> - Vector database untuk RAG memory system
+          </li>
+          <li>
+            <strong>SQLite</strong> - Relational database untuk user settings
+          </li>
+          <li>
+            <strong>Google Sheets</strong> - Spreadsheet untuk data LifeOS
+          </li>
+          <li><strong>Google Drive</strong> - File storage</li>
+        </ul>
+
+        <h3>Google Services</h3>
+        <ul>
+          <li>Google Drive API</li>
+          <li>Google Sheets API</li>
+          <li>Google Docs API</li>
+          <li>Google Calendar API</li>
+          <li>Gmail API</li>
+          <li>Google Forms API</li>
+          <li>Google Custom Search API</li>
+        </ul>
+
+        <h3>Framework & Libraries</h3>
+        <ul>
+          <li>
+            <strong>python-telegram-bot</strong> - Framework untuk Telegram Bot
+          </li>
+          <li><strong>Pinecone Client</strong> - Client untuk Pinecone API</li>
+          <li><strong>Google API Client</strong> - Client untuk Google APIs</li>
+          <li><strong>OpenAI SDK</strong> - SDK untuk OpenAI API</li>
+          <li><strong>DeepSeek SDK</strong> - SDK untuk DeepSeek API</li>
+        </ul>
+
+        <h3>Infrastructure</h3>
+        <ul>
+          <li><strong>Docker</strong> - Containerization</li>
+          <li><strong>Fly.io</strong> - Cloud hosting platform</li>
+          <li><strong>Python 3.x</strong> - Programming language</li>
+        </ul>
+      </div>
+
+      <!-- DOKUMENTASI 6 -->
+      <div class="docs-section">
+        <h2>🔐 Keamanan & Privasi</h2>
+
+        <h3>Data Protection</h3>
+        <ul>
+          <li>Semua API keys disimpan di environment variables (.env file)</li>
+          <li>User data diisolasi per user ID</li>
+          <li>Google OAuth2 untuk autentikasi aman</li>
+          <li>Pinecone vector database dengan access control</li>
+        </ul>
+
+        <h3>Access Control</h3>
+        <ul>
+          <li>Admin-only commands untuk fitur sensitif</li>
+          <li>Permission checking untuk setiap operasi</li>
+          <li>Multi-tenant support dengan isolasi data</li>
+        </ul>
+
+        <h3>Privacy</h3>
+        <ul>
+          <li>Memory hanya bisa diakses oleh user yang membuatnya</li>
+          <li>Google data hanya diakses dengan OAuth consent user</li>
+          <li>Tidak ada data sharing antar user</li>
+        </ul>
+
+        <div class="docs-note">
+          <strong>🔒 Catatan:</strong> Semua komunikasi dengan API menggunakan
+          HTTPS. Pastikan untuk menjaga API keys kamu dengan baik!
         </div>
+      </div>
 
-        <!-- DOKUMENTASI 5 -->
-        <div class="docs-section">
-            <h2>💻 Teknologi yang Digunakan</h2>
-            
-            <h3>AI & Machine Learning</h3>
-            <ul>
-                <li><strong>DeepSeek API</strong> - Model AI untuk chat dan reasoning
-                    <ul>
-                        <li>DeepSeek-Chat: Untuk chat cepat dan draft generation</li>
-                        <li>DeepSeek-Reasoner: Untuk analisis mendalam dan reasoning</li>
-                    </ul>
-                </li>
-                <li><strong>OpenAI API</strong> - Multiple services
-                    <ul>
-                        <li>GPT-4 Vision: Untuk analisis gambar</li>
-                        <li>Whisper: Untuk transcribe audio ke text</li>
-                        <li>Text-to-Speech: Untuk voice response</li>
-                        <li>Embedding API: Untuk generate vector embeddings (1536 dimensi)</li>
-                        <li>DALL-E: Untuk generate gambar</li>
-                    </ul>
-                </li>
-            </ul>
+      <!-- DOKUMENTASI 7 -->
+      <div class="docs-section">
+        <h2>📚 Command Reference</h2>
 
-            <h3>Database & Storage</h3>
-            <ul>
-                <li><strong>Pinecone</strong> - Vector database untuk RAG memory system</li>
-                <li><strong>SQLite</strong> - Relational database untuk user settings</li>
-                <li><strong>Google Sheets</strong> - Spreadsheet untuk data LifeOS</li>
-                <li><strong>Google Drive</strong> - File storage</li>
-            </ul>
+        <h3>Core Commands</h3>
+        <ul>
+          <li><code>/start</code> - Menu utama dengan inline buttons</li>
+          <li><code>/help</code> - Panduan lengkap penggunaan bot</li>
+          <li><code>/chat</code> - Mode chat cepat</li>
+          <li>
+            <code>/thinking</code> - Mode thinking dengan analisis mendalam
+          </li>
+          <li><code>/debat</code> - Mode debat dengan 4-stage system</li>
+          <li><code>/gambar</code> - Generate gambar dengan DALL-E</li>
+        </ul>
 
-            <h3>Google Services</h3>
-            <ul>
-                <li>Google Drive API</li>
-                <li>Google Sheets API</li>
-                <li>Google Docs API</li>
-                <li>Google Calendar API</li>
-                <li>Gmail API</li>
-                <li>Google Forms API</li>
-                <li>Google Custom Search API</li>
-            </ul>
+        <h3>Memory Commands</h3>
+        <ul>
+          <li><code>/ingat [text]</code> - Simpan memory manual</li>
+          <li>
+            <code>/ingatan [keyword]</code> - Cari memory dengan AI analysis
+          </li>
+          <li><code>/lupa [keyword]</code> - Hapus memory</li>
+        </ul>
 
-            <h3>Framework & Libraries</h3>
-            <ul>
-                <li><strong>python-telegram-bot</strong> - Framework untuk Telegram Bot</li>
-                <li><strong>Pinecone Client</strong> - Client untuk Pinecone API</li>
-                <li><strong>Google API Client</strong> - Client untuk Google APIs</li>
-                <li><strong>OpenAI SDK</strong> - SDK untuk OpenAI API</li>
-                <li><strong>DeepSeek SDK</strong> - SDK untuk DeepSeek API</li>
-            </ul>
+        <h3>Google Services Commands</h3>
+        <ul>
+          <li><code>/drive</code> - Operasi Google Drive</li>
+          <li><code>/sheet</code> - Analisis Google Sheets</li>
+          <li><code>/docs</code> - Operasi Google Docs</li>
+          <li><code>/calendar</code> - Operasi Google Calendar</li>
+          <li><code>/email</code> - Operasi Gmail</li>
+          <li><code>/formulir</code> - Buat Google Form</li>
+        </ul>
 
-            <h3>Infrastructure</h3>
-            <ul>
-                <li><strong>Docker</strong> - Containerization</li>
-                <li><strong>Fly.io</strong> - Cloud hosting platform</li>
-                <li><strong>Python 3.x</strong> - Programming language</li>
-            </ul>
+        <h3>LifeOS Commands</h3>
+        <ul>
+          <li><code>/keuangan</code> - Kelola keuangan</li>
+          <li><code>/todo</code> - Kelola todo list</li>
+          <li><code>/note</code> - Simpan note</li>
+          <li><code>/summary</code> - Generate summary dengan chart</li>
+        </ul>
+
+        <div class="docs-tip">
+          <strong>💡 Tips:</strong> Kamu juga bisa menggunakan voice message
+          untuk semua operasi ini! Bot akan otomatis detect intent dan execute.
         </div>
+      </div>
 
-        <!-- DOKUMENTASI 6 -->
-        <div class="docs-section">
-            <h2>🔐 Keamanan & Privasi</h2>
-            
-            <h3>Data Protection</h3>
-            <ul>
-                <li>Semua API keys disimpan di environment variables (.env file)</li>
-                <li>User data diisolasi per user ID</li>
-                <li>Google OAuth2 untuk autentikasi aman</li>
-                <li>Pinecone vector database dengan access control</li>
-            </ul>
-
-            <h3>Access Control</h3>
-            <ul>
-                <li>Admin-only commands untuk fitur sensitif</li>
-                <li>Permission checking untuk setiap operasi</li>
-                <li>Multi-tenant support dengan isolasi data</li>
-            </ul>
-
-            <h3>Privacy</h3>
-            <ul>
-                <li>Memory hanya bisa diakses oleh user yang membuatnya</li>
-                <li>Google data hanya diakses dengan OAuth consent user</li>
-                <li>Tidak ada data sharing antar user</li>
-            </ul>
-
-            <div class="docs-note">
-                <strong>🔒 Catatan:</strong> Semua komunikasi dengan API menggunakan HTTPS. Pastikan untuk menjaga API keys kamu dengan baik!
-            </div>
-        </div>
-
-        <!-- DOKUMENTASI 7 -->
-        <div class="docs-section">
-            <h2>📚 Command Reference</h2>
-            
-            <h3>Core Commands</h3>
-            <ul>
-                <li><code>/start</code> - Menu utama dengan inline buttons</li>
-                <li><code>/help</code> - Panduan lengkap penggunaan bot</li>
-                <li><code>/chat</code> - Mode chat cepat</li>
-                <li><code>/thinking</code> - Mode thinking dengan analisis mendalam</li>
-                <li><code>/debat</code> - Mode debat dengan 4-stage system</li>
-                <li><code>/gambar</code> - Generate gambar dengan DALL-E</li>
-            </ul>
-
-            <h3>Memory Commands</h3>
-            <ul>
-                <li><code>/ingat [text]</code> - Simpan memory manual</li>
-                <li><code>/ingatan [keyword]</code> - Cari memory dengan AI analysis</li>
-                <li><code>/lupa [keyword]</code> - Hapus memory</li>
-            </ul>
-
-            <h3>Google Services Commands</h3>
-            <ul>
-                <li><code>/drive</code> - Operasi Google Drive</li>
-                <li><code>/sheet</code> - Analisis Google Sheets</li>
-                <li><code>/docs</code> - Operasi Google Docs</li>
-                <li><code>/calendar</code> - Operasi Google Calendar</li>
-                <li><code>/email</code> - Operasi Gmail</li>
-                <li><code>/formulir</code> - Buat Google Form</li>
-            </ul>
-
-            <h3>LifeOS Commands</h3>
-            <ul>
-                <li><code>/keuangan</code> - Kelola keuangan</li>
-                <li><code>/todo</code> - Kelola todo list</li>
-                <li><code>/note</code> - Simpan note</li>
-                <li><code>/summary</code> - Generate summary dengan chart</li>
-            </ul>
-
-            <div class="docs-tip">
-                <strong>💡 Tips:</strong> Kamu juga bisa menggunakan voice message untuk semua operasi ini! Bot akan otomatis detect intent dan execute.
-            </div>
-        </div>
-
-        <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee;">
-            <a href="view_flowchart.html" class="back-link">← Kembali ke Flowchart</a>
-        </div>
+      <div
+        style="
+          text-align: center;
+          margin-top: 40px;
+          padding-top: 20px;
+          border-top: 2px solid #eee;
+        "
+      >
+        <a href="index.html" class="back-link">← Kembali ke Flowchart</a>
+      </div>
     </div>
-</body>
-
+  </body>
 </html>
