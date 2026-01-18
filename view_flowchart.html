@@ -22,6 +22,8 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             line-height: 1.6;
+            display: block !important;
+            visibility: visible !important;
         }
 
         .container {
@@ -1040,25 +1042,62 @@
     </div>
 
     <script>
+        // Error handling - prevent white screen on errors
+        window.addEventListener('error', function(e) {
+            console.error('JavaScript Error:', e.error);
+            // Ensure container is visible even on error
+            const container = document.querySelector('.container');
+            if (container) {
+                container.style.display = 'block';
+                container.style.visibility = 'visible';
+            }
+        }, true);
+
+        // Ensure page is visible even if JS fails - run immediately
+        (function() {
+            const container = document.querySelector('.container');
+            if (container) {
+                container.style.display = 'block';
+                container.style.visibility = 'visible';
+            }
+        })();
+
+        // Also ensure on DOM ready
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.querySelector('.container');
+            if (container) {
+                container.style.display = 'block';
+                container.style.visibility = 'visible';
+            }
+        });
+
         // Mobile Menu Toggle Function
         function toggleMobileMenu() {
-            const hamburger = document.getElementById('hamburger');
-            const navLinks = document.getElementById('navLinks');
-            
-            if (hamburger && navLinks) {
-                hamburger.classList.toggle('active');
-                navLinks.classList.toggle('active');
+            try {
+                const hamburger = document.getElementById('hamburger');
+                const navLinks = document.getElementById('navLinks');
+                
+                if (hamburger && navLinks) {
+                    hamburger.classList.toggle('active');
+                    navLinks.classList.toggle('active');
+                }
+            } catch (error) {
+                console.error('Error in toggleMobileMenu:', error);
             }
         }
 
         // Documentation Toggle Function
         function toggleDocs(docId) {
-            const docContent = document.getElementById(docId);
-            const docHeader = docContent.previousElementSibling;
-            
-            if (docContent && docHeader) {
-                docContent.classList.toggle('active');
-                docHeader.classList.toggle('active');
+            try {
+                const docContent = document.getElementById(docId);
+                const docHeader = docContent ? docContent.previousElementSibling : null;
+                
+                if (docContent && docHeader) {
+                    docContent.classList.toggle('active');
+                    docHeader.classList.toggle('active');
+                }
+            } catch (error) {
+                console.error('Error in toggleDocs:', error);
             }
         }
 
@@ -1090,17 +1129,35 @@
             });
         });
 
-        // Initialize Mermaid
-        mermaid.initialize({
-            startOnLoad: true,
-            theme: 'default',
-            flowchart: {
-                useMaxWidth: true,
-                htmlLabels: true,
-                curve: 'basis'
-            },
-            securityLevel: 'loose'
-        });
+        // Initialize Mermaid with error handling
+        if (typeof mermaid !== 'undefined') {
+            try {
+                mermaid.initialize({
+                    startOnLoad: true,
+                    theme: 'default',
+                    flowchart: {
+                        useMaxWidth: true,
+                        htmlLabels: true,
+                        curve: 'basis'
+                    },
+                    securityLevel: 'loose'
+                });
+            } catch (error) {
+                console.error('Mermaid initialization error:', error);
+            }
+        } else {
+            console.error('Mermaid library not loaded');
+            // Show error message after DOM loads
+            document.addEventListener('DOMContentLoaded', function() {
+                const container = document.querySelector('.container');
+                if (container) {
+                    const errorDiv = document.createElement('div');
+                    errorDiv.style.cssText = 'padding: 20px; background: #f8d7da; color: #721c24; border-radius: 8px; margin: 20px; text-align: center;';
+                    errorDiv.innerHTML = '<strong>⚠️ Error:</strong> Mermaid library gagal dimuat. Pastikan koneksi internet aktif dan refresh halaman.';
+                    container.insertBefore(errorDiv, container.firstChild);
+                }
+            });
+        }
 
         // Flowchart Animation Engine
         class FlowchartAnimator {
