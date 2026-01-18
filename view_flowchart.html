@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowchart Sistem - Asisten Pribadi AI</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .diagram-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .diagram-section:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .diagram-section:target {
+            animation: highlightSection 1s ease;
+        }
+
+        @keyframes highlightSection {
+            0% {
+                background: #f8f9fa;
+            }
+            50% {
+                background: #fff3cd;
+            }
+            100% {
+                background: #f8f9fa;
+            }
+        }
+
+        .diagram-title {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .mermaid {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+
+        .nav {
+            position: sticky;
+            top: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        .nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 8px 15px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9em;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .nav a:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav a:active {
+            transform: translateY(0);
+        }
+
+        /* Hamburger Menu Styles */
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .nav-title {
+            font-weight: bold;
+            color: #333;
+            font-size: 1em;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+            background: #667eea;
+            border-radius: 5px;
+            width: 35px;
+            height: 35px;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+            transition: background 0.3s;
+        }
+
+        .hamburger:hover {
+            background: #764ba2;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 20px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .diagram-title {
+                font-size: 1.2em;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                width: calc(100% - 20px);
+                margin: 5px 0;
+                text-align: center;
+            }
+
+            .mermaid {
+                padding: 10px;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .anim-controls {
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+
+            .anim-btn {
+                min-width: 35px;
+                padding: 5px 8px;
+                font-size: 0.85em;
+            }
+
+            .anim-status {
+                width: 100%;
+                margin-left: 0;
+                margin-top: 5px;
+                text-align: center;
+                font-size: 0.85em;
+            }
+        }
+
+        /* Animation Styles */
+        .anim-controls {
+            margin-top: 15px;
+            padding: 10px;
+            background: #eee;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9em;
+        }
+
+        .anim-btn {
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 30px;
+            user-select: none;
+        }
+
+        .anim-btn:hover {
+            background: #e2e6ea;
+            border-color: #adb5bd;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .anim-btn:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        .anim-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #5a6fd6;
+        }
+
+        .anim-btn:focus {
+            outline: 2px solid #667eea;
+            outline-offset: 2px;
+        }
+
+        .anim-status {
+            margin-left: auto;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .user-marker {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: white;
+            border-radius: 50%;
+            border: 2px solid #667eea;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            pointer-events: none;
+            transition: top 0.1s linear, left 0.1s linear;
+            animation: pulse 2s infinite;
+        }
+
+        @media (max-width: 768px) {
+            .user-marker {
+                width: 20px;
+                height: 20px;
+                font-size: 12px;
+                border-width: 1.5px;
+                box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+                opacity: 0.85;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            }
+            50% {
+                box-shadow: 0 4px 20px rgba(102, 126, 234, 0.6);
+            }
+        }
+
+        .active-node rect,
+        .active-node circle,
+        .active-node polygon,
+        .active-node path {
+            stroke: #667eea !important;
+            stroke-width: 4px !important;
+            filter: drop-shadow(0 0 8px rgba(102, 126, 234, 0.7));
+            transition: all 0.3s ease;
+            animation: nodeHighlight 1.5s ease-in-out infinite;
+        }
+
+        @keyframes nodeHighlight {
+            0%, 100% {
+                filter: drop-shadow(0 0 8px rgba(102, 126, 234, 0.7));
+            }
+            50% {
+                filter: drop-shadow(0 0 12px rgba(102, 126, 234, 0.9));
+            }
+        }
+
+        /* Documentation Styles */
+        .docs-section {
+            margin-bottom: 30px;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .docs-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+            margin: -20px -20px 15px -20px;
+            transition: all 0.3s;
+        }
+
+        .docs-header:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .docs-header h2 {
+            margin: 0;
+            font-size: 1.3em;
+        }
+
+        .docs-toggle {
+            font-size: 1.5em;
+            transition: transform 0.3s;
+        }
+
+        .docs-header.active .docs-toggle {
+            transform: rotate(180deg);
+        }
+
+        .docs-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .docs-content.active {
+            max-height: 5000px;
+            transition: max-height 0.5s ease-in;
+        }
+
+        .docs-content-inner {
+            padding: 15px 0;
+            line-height: 1.8;
+        }
+
+        .docs-content h3 {
+            color: #667eea;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 5px;
+        }
+
+        .docs-content h4 {
+            color: #764ba2;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .docs-content ul, .docs-content ol {
+            margin: 10px 0;
+            padding-left: 25px;
+        }
+
+        .docs-content li {
+            margin: 8px 0;
+        }
+
+        .docs-content code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #e83e8c;
+        }
+
+        .docs-content strong {
+            color: #333;
+            font-weight: 600;
+        }
+
+        .docs-badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin-left: 5px;
+        }
+
+        .docs-note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .docs-tip {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>📊 FLOWCHART SISTEM</h1>
+        <p class="subtitle">Asisten Pribadi AI Telegram Bot v3.0</p>
+
+        <div class="nav">
+            <div class="nav-header">
+                <div class="nav-title">📋 Navigasi Cepat</div>
+                <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="documentation.html">📖 Dokumentasi</a>
+                <a href="#diagram1">1. Sistem Utama</a>
+                <a href="#diagram2">2. Multi-Agent Debate</a>
+                <a href="#diagram3">3. Memory System</a>
+                <a href="#diagram4">4. Voice Router</a>
+                <a href="#diagram5">5. Text Chat</a>
+                <a href="#diagram6">6. Google Services</a>
+                <a href="#diagram7">7. Arsitektur</a>
+            </div>
+        </div>
+
+        <!-- DOKUMENTASI SISTEM -->
+        <div class="docs-section" id="docs" style="text-align: center; padding: 40px 20px;">
+            <h2 style="margin-bottom: 20px; color: #667eea;">📖 Dokumentasi Lengkap</h2>
+            <p style="font-size: 1.1em; color: #666; margin-bottom: 30px;">
+                Ingin tahu lebih detail tentang sistem ini? Baca dokumentasi lengkap yang mencakup semua fitur, arsitektur, alur kerja, teknologi, dan command reference.
+            </p>
+            <a href="documentation.html" style="display: inline-block; padding: 15px 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 8px; font-size: 1.1em; font-weight: bold; transition: all 0.3s; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);">
+                📖 Baca Dokumentasi Lengkap →
+            </a>
+            <p style="margin-top: 20px; color: #999; font-size: 0.9em;">
+                Dokumentasi mencakup: Fitur Utama, Arsitektur Sistem, Alur Kerja, Teknologi, Keamanan, dan Command Reference
+            </p>
+        </div>
+
+        <!-- DIAGRAM 1: SISTEM UTAMA -->
+        <div class="diagram-section" id="diagram1">
+            <div class="diagram-title">1. Flowchart Utama Sistem</div>
+            <div class="mermaid">
+                flowchart TD
+                Start([User Mengirim Pesan]) --> CheckType{Type Pesan?}
+
+                CheckType -->|"Command /start"| StartCmd["start - Menu Utama"]
+                CheckType -->|"Command /thinking"| ThinkingCmd["thinking - Deep Analysis"]
+                CheckType -->|"Command /debat"| DebatCmd["debat - Multi-Agent Debate"]
+                CheckType -->|"Command /chat"| ChatCmd["chat - Fast Chat"]
+                CheckType -->|"Command /ingat"| MemorySave[Simpan Memory ke Pinecone]
+                CheckType -->|"Command /ingatan"| MemorySearch[Cari Memory dari Pinecone]
+                CheckType -->|Voice Message| VoiceFlow[Voice Router]
+                CheckType -->|Text Message| TextChat[Text Chat Handler]
+                CheckType -->|Photo| PhotoHandler[Scan Struk/Upload]
+                CheckType -->|"File/Video/Audio"| DriveUpload[Upload ke Drive]
+
+                StartCmd --> ShowMenu[Show Inline Menu]
+                ThinkingCmd --> DebateSystem[4-Stage Debate System]
+                DebatCmd --> DebateSystem
+                ChatCmd --> SimpleAI[Simple AI Chat]
+
+                VoiceFlow --> VoiceTranscribe[Whisper Transcribe]
+                VoiceTranscribe --> IntentDetect[AI Intent Detection]
+                IntentDetect --> VoiceExecute[Execute Intent Action]
+
+                TextChat --> MemoryRecall{Check Memory?}
+                MemoryRecall -->|Ada Memory Relevan| AddContext[Add Memory Context]
+                MemoryRecall -->|Tidak Ada| ProcessAI[Process AI Request]
+                AddContext --> ProcessAI
+                ProcessAI --> Response[Generate Response]
+                Response --> AutoSave{"Auto-Save Memory?"}
+                AutoSave -->|"Yes, Important"| SaveMemory[Save to Pinecone]
+                AutoSave -->|No| End([Send Response])
+                SaveMemory --> End
+
+                MemorySave --> PineconeDB[(Pinecone Database)]
+                MemorySearch --> PineconeDB
+                SaveMemory --> PineconeDB
+
+                DriveUpload --> GoogleDrive[(Google Drive)]
+                PhotoHandler --> GoogleSheets[(Google Sheets)]
+                VoiceExecute --> VariousActions["Google Services / Memory / etc"]
+
+                End --> Done([Selesai])
+
+                style DebateSystem fill:#ff9999
+                style PineconeDB fill:#99ccff
+                style GoogleDrive fill:#99ff99
+                style GoogleSheets fill:#ffcc99
+            </div>
+        </div>
+
+        <!-- DIAGRAM 2: MULTI-AGENT DEBATE -->
+        <div class="diagram-section" id="diagram2">
+            <div class="diagram-title">2. Multi-Agent Debate (4-Stage System)</div>
+            <div class="mermaid">
+                flowchart TD
+                Start([/thinking atau /debat]) --> CheckPerm{Check Permission}
+                CheckPerm -->|Not Allowed| Reject([⛔ Access Denied])
+                CheckPerm -->|Allowed| SetContext[Set User Context]
+
+                SetContext --> MemorySearch1{Memory Available?}
+                MemorySearch1 -->|Yes| SearchMem[Search Pinecone Memory]
+                MemorySearch1 -->|No| EmptyContext[Empty Context]
+                SearchMem --> PreContext[Pre-debate Context]
+                EmptyContext --> PreContext
+
+                PreContext --> Stage1[STAGE 1: ARCHITECT<br />DeepSeek-Reasoner]
+                Stage1 --> ArchitectTask[Analyze Query<br />Determine Data Needs]
+                ArchitectTask --> ActionPlan[Action Plan:<br />search/memory/logic]
+
+                ActionPlan --> Stage2[STAGE 2: GATHERER]
+                Stage2 --> GatherType{Action Type?}
+
+                GatherType -->|search| GoogleSearch[Google Custom Search API]
+                GatherType -->|memory| MemorySearch2[Pinecone Memory Search]
+                GatherType -->|search_memory| BothSearch[Google + Memory Search]
+                GatherType -->|logic| NoGather[No External Data Needed]
+
+                GoogleSearch --> GatherContext[Gathered Context]
+                MemorySearch2 --> GatherContext
+                BothSearch --> GatherContext
+                NoGather --> GatherContext
+
+                GatherContext --> CombineContext[Combine: Pre-Context + Gathered]
+                CombineContext --> FinalContext[Final Rich Context]
+
+                FinalContext --> Stage3A[STAGE 3A: WRITER<br />DeepSeek-Chat]
+                Stage3A --> WriteDraft[Generate Draft Answer]
+                WriteDraft --> Draft[Draft Answer]
+
+                Draft --> Stage3B[STAGE 3B: CRITIC<br />DeepSeek-Chat]
+                Stage3B --> EvaluateDraft[Evaluate & Critique Draft]
+                EvaluateDraft --> Critique[Critique & Suggestions]
+
+                Draft --> Stage4[STAGE 4: JUDGE<br />DeepSeek-Reasoner]
+                Critique --> Stage4
+                Stage4 --> Synthesize[Synthesize Final Answer<br />With Reasoning]
+                Synthesize --> FinalAnswer[Final Optimal Answer]
+
+                FinalAnswer --> Format[Format Response]
+                Format --> Send([Send to User])
+
+                style Stage1 fill:#ff9999
+                style Stage2 fill:#ffcc99
+                style Stage3A fill:#ffff99
+                style Stage3B fill:#ffff99
+                style Stage4 fill:#99ff99
+                style GoogleSearch fill:#99ccff
+                style MemorySearch2 fill:#99ccff
+            </div>
+        </div>
+
+        <!-- DIAGRAM 3: MEMORY SYSTEM -->
+        <div class="diagram-section" id="diagram3">
+            <div class="diagram-title">3. Memory System (RAG with Pinecone)</div>
+            <div class="mermaid">
+                flowchart TD
+                Start([User Action]) --> MemAction{Memory Action?}
+
+                MemAction -->|/ingat text| ManualSave[Manual Save]
+                MemAction -->|Chat Text| AutoCheck{Auto-Save Enabled?}
+                MemAction -->|/ingatan keyword| SearchMem[Search Memory]
+                MemAction -->|/lupa keyword| DeleteMem[Delete Memory]
+
+                ManualSave --> GetText[Get Text Input]
+                AutoCheck -->|Yes| AnalyzeText[AI Analyze: should_save_memory]
+                AutoCheck -->|No| Skip([Skip Save])
+
+                AnalyzeText --> ShouldSave{Should Save?}
+                ShouldSave -->|Yes| GetText
+                ShouldSave -->|No| Skip
+
+                GetText --> DetectCategory[Detect Category:<br />journal/learning/important/personal/work]
+                DetectCategory --> GenerateEmbedding[Generate Embedding<br />OpenAI Embedding API]
+
+                GenerateEmbedding --> CreateVector[Create Vector 1536-dim]
+                CreateVector --> PrepareMetadata[Prepare Metadata:<br />user_id, category, timestamp, summary, text]
+
+                PrepareMetadata --> UpsertPinecone[Upsert to Pinecone<br />Vector + Metadata]
+                UpsertPinecone --> PineconeDB[(Pinecone Database<br />Vector Storage)]
+                UpsertPinecone --> Success([✅ Memory Saved])
+
+                SearchMem --> QueryEmbedding[Generate Query Embedding]
+                QueryEmbedding --> VectorSearch[Vector Similarity Search<br />Cosine Distance]
+                VectorSearch --> PineconeDB
+                PineconeDB --> FilterResults[Filter by Threshold ≥ 0.7]
+                FilterResults --> ReturnMemories[Return Top-K Memories]
+                ReturnMemories --> AIProcess{Use AI Debate?}
+                AIProcess -->|/ingatan keyword| DebateAnalysis[AI Debate Analysis<br />Synthesize Results]
+                AIProcess -->|List Only| ShowList[Show Memory List]
+                DebateAnalysis --> ShowResults([Show Results])
+                ShowList --> ShowResults
+
+                DeleteMem --> DeleteSearch[Search Memory by Keyword]
+                DeleteSearch --> PineconeDB
+                PineconeDB --> DeleteFilter[Filter Matches threshold ≥ 0.5]
+                DeleteFilter --> GetIDs[Get Memory IDs]
+                GetIDs --> DeleteVectors[Delete Vectors from Pinecone]
+                DeleteVectors --> PineconeDB
+                DeleteVectors --> Deleted([✅ Memory Deleted])
+
+                style PineconeDB fill:#99ccff
+                style GenerateEmbedding fill:#ffcc99
+                style VectorSearch fill:#ffcc99
+                style DebateAnalysis fill:#ff9999
+            </div>
+        </div>
+
+        <!-- DIAGRAM 4: VOICE ROUTER -->
+        <div class="diagram-section" id="diagram4">
+            <div class="diagram-title">4. Voice Router System</div>
+            <div class="mermaid">
+                flowchart TD
+                Start([User Kirim Voice Message]) --> CheckPerm{Check Permission}
+                CheckPerm -->|Not Allowed| Reject([⛔ Access Denied])
+                CheckPerm -->|Allowed| Transcribe[Whisper API<br />Transcribe Audio]
+
+                Transcribe --> GetText[Get Transcript Text]
+                GetText --> IntentDetection[AI Intent Detection<br />Detect Action Type]
+
+                IntentDetection --> IntentTypes{Intent Type?}
+
+                IntentTypes -->|memory_save| MemSave[Save to Pinecone]
+                IntentTypes -->|memory_recall| MemRecall[Search Pinecone]
+                IntentTypes -->|keuangan| Expense[Save to Google Sheets]
+                IntentTypes -->|todo| Todo[Manage Todo List]
+                IntentTypes -->|note| Note[Save Note to Memory]
+                IntentTypes -->|summary| Summary[Generate Summary with Chart]
+                IntentTypes -->|drive| Drive[Search/Create in Drive]
+                IntentTypes -->|docs| Docs[Create/Read Document]
+                IntentTypes -->|calendar| Calendar[Manage Calendar Events]
+                IntentTypes -->|email| Email[Check Inbox]
+                IntentTypes -->|sheet| Sheet[Read/Analyze Sheet]
+                IntentTypes -->|search| Search[AI Thinking Mode]
+                IntentTypes -->|image| Image[Generate Image DALL-E]
+                IntentTypes -->|chat| Chat[Simple AI Chat]
+
+                IntentDetection --> Confidence{Confidence ≥ 80%?}
+                Confidence -->|Yes| AutoExecute[Auto Execute Intent]
+                Confidence -->|No| AskConfirm[Ask User Confirmation<br />Show Buttons]
+
+                AskConfirm --> UserConfirm{User Confirm?}
+                UserConfirm -->|Yes| AutoExecute
+                UserConfirm -->|No/Chat| Chat
+                UserConfirm -->|Retry| Start
+
+                AutoExecute --> IntentTypes
+
+                MemSave --> PineconeDB[(Pinecone)]
+                MemRecall --> PineconeDB
+                Note --> PineconeDB
+
+                Expense --> GoogleSheets[(Google Sheets)]
+                Todo --> GoogleSheets
+                Summary --> GoogleSheets
+
+                Drive --> GoogleDrive[(Google Drive)]
+                Docs --> GoogleDocs[(Google Docs)]
+                Calendar --> GoogleCal[(Google Calendar)]
+                Email --> GmailAPI[(Gmail API)]
+                Sheet --> GoogleSheets
+
+                Search --> ThinkingMode[DeepSeek-Reasoner<br />Thinking Mode]
+                Image --> DalleAPI[DALL-E API]
+                Chat --> SimpleAI[Simple AI Chat]
+
+                MemSave --> Response([Voice Response TTS])
+                MemRecall --> Response
+                Expense --> Response
+                Todo --> Response
+                Note --> Response
+                Summary --> Response
+                Drive --> Response
+                Docs --> Response
+                Calendar --> Response
+                Email --> Response
+                Sheet --> Response
+                Search --> Response
+                Image --> Response
+                Chat --> Response
+
+                Response --> End([Send Response + Voice])
+
+                style Transcribe fill:#ffcc99
+                style IntentDetection fill:#ff9999
+                style PineconeDB fill:#99ccff
+                style GoogleSheets fill:#ffcc99
+                style ThinkingMode fill:#ff9999
+            </div>
+        </div>
+
+        <!-- DIAGRAM 5: TEXT CHAT -->
+        <div class="diagram-section" id="diagram5">
+            <div class="diagram-title">5. Text Chat with Auto-Memory</div>
+            <div class="mermaid">
+                flowchart TD
+                Start([User Kirim Text Message]) --> CheckCommand{Is Command?}
+
+                CheckCommand -->|Yes /command| CommandHandler[Route to Command Handler]
+                CheckCommand -->|No| TextChat[Text Chat Handler]
+
+                TextChat --> CheckButton{Is Button Click?}
+                CheckButton -->|🏠 Start| StartCommand[Execute /start]
+                CheckButton -->|Text| LoadModel[Load User AI Model]
+
+                LoadModel --> MemoryRecall{Memory Available?}
+                MemoryRecall -->|Yes| SearchMem[Search Pinecone<br />Top-K = 3, Threshold = 0.7]
+                MemoryRecall -->|No| NoMemory[No Memory Context]
+
+                SearchMem --> FoundMemory{Found Relevant?}
+                FoundMemory -->|Yes| BuildContext[Build Memory Context String]
+                FoundMemory -->|No| NoMemory
+
+                BuildContext --> ProcessAI[Process AI with Memory Context]
+                NoMemory --> ProcessAI
+
+                ProcessAI --> SelectModel{User Model?}
+                SelectModel -->|deepseek-chat| FastMode[Fast Chat Mode<br />Temperature 0.7]
+                SelectModel -->|deepseek-reasoner| ThinkingMode[Thinking Mode<br />Temperature 0.6<br />With Reasoning]
+
+                FastMode --> StreamResponse[Stream Response to User]
+                ThinkingMode --> StreamResponse
+
+                StreamResponse --> Response([Send Response])
+
+                Response --> AutoSave{Auto-Save Enabled?}
+                AutoSave -->|No| End([Done])
+                AutoSave -->|Yes| AnalyzeImportance[AI Analyze: should_save_memory]
+
+                AnalyzeImportance --> IsImportant{Important Info?}
+                IsImportant -->|Yes| SaveToMemory[Save Original Text to Pinecone<br />Category:
+                Auto-detected<br />Summary: AI-generated]
+                IsImportant -->|No| End
+
+                SaveToMemory --> PineconeDB[(Pinecone Database)]
+                PineconeDB --> End
+
+                style MemoryRecall fill:#99ccff
+                style SearchMem fill:#99ccff
+                style AutoSave fill:#ffcc99
+                style SaveToMemory fill:#99ccff
+                style PineconeDB fill:#99ccff
+            </div>
+        </div>
+
+        <!-- DIAGRAM 6: GOOGLE SERVICES -->
+        <div class="diagram-section" id="diagram6">
+            <div class="diagram-title">6. Integrasi Google Services</div>
+            <div class="mermaid">
+                flowchart TD
+                Start([User Request Google Service]) --> ServiceType{Service Type?}
+
+                ServiceType -->|Drive| DriveFlow[Drive Handler]
+                ServiceType -->|Sheets| SheetsFlow[Sheets Handler]
+                ServiceType -->|Docs| DocsFlow[Docs Handler]
+                ServiceType -->|Calendar| CalendarFlow[Calendar Handler]
+                ServiceType -->|Gmail| EmailFlow[Email Handler]
+                ServiceType -->|Forms| FormsFlow[Forms Handler]
+
+                DriveFlow --> DriveActions{Drive Action?}
+                DriveActions -->|cari| SearchFiles[Search Files in Drive]
+                DriveActions -->|masuk| EnterFolder[Enter Folder]
+                DriveActions -->|keluar| ExitFolder[Back to Root]
+                DriveActions -->|tambah| CreateFolder[Create New Folder]
+                DriveActions -->|hapus| DeleteFile[Delete File/Folder]
+                DriveActions -->|upload| UploadFile[Upload File to Drive]
+
+                SheetsFlow --> SheetsActions{Sheets Action?}
+                SheetsActions -->|sheet| AnalyzeSheet[AI Analyze Sheet Data<br />Multi-Agent Debate]
+                SheetsActions -->|buatsheet| CreateSheet[Create New Sheet]
+                SheetsActions -->|isi| InsertData[Insert Data to Sheet]
+                SheetsActions -->|cekdata| QueryData[Query & Analyze Data<br />Multi-Agent Debate]
+
+                DocsFlow --> DocsActions{Docs Action?}
+                DocsActions -->|create| CreateDoc[Create Document]
+                DocsActions -->|read| ReadDoc[Read Document Content]
+                DocsActions -->|edit| EditDoc[AI Edit Document<br />Multi-Agent Debate]
+
+                CalendarFlow --> CalendarActions{Calendar Action?}
+                CalendarActions -->|list| ListEvents[List Upcoming Events]
+                CalendarActions -->|add| AddEvent[Add New Event]
+                CalendarActions -->|parse| ParseDateTime[AI Parse Date/Time]
+
+                EmailFlow --> EmailActions{Email Action?}
+                EmailActions -->|email/inbox| ListEmails[List Inbox Emails]
+                EmailActions -->|baca| ReadEmail[Read Email Content]
+                EmailActions -->|balas| ReplyEmail[AI Draft Reply<br />Multi-Agent Debate]
+
+                FormsFlow --> FormsActions{Forms Action?}
+                FormsActions -->|formulir| CreateForm[AI Create Form<br />Multi-Agent Debate]
+                FormsActions -->|form_manual| ManualForm[Manual Form Creation]
+
+                SearchFiles --> GoogleAPI[(Google Drive API)]
+                EnterFolder --> GoogleAPI
+                ExitFolder --> GoogleAPI
+                CreateFolder --> GoogleAPI
+                DeleteFile --> GoogleAPI
+                UploadFile --> GoogleAPI
+
+                AnalyzeSheet --> GoogleSheetsAPI[(Google Sheets API)]
+                CreateSheet --> GoogleSheetsAPI
+                InsertData --> GoogleSheetsAPI
+                QueryData --> GoogleSheetsAPI
+
+                CreateDoc --> GoogleDocsAPI[(Google Docs API)]
+                ReadDoc --> GoogleDocsAPI
+                EditDoc --> GoogleDocsAPI
+
+                ListEvents --> GoogleCalAPI[(Google Calendar API)]
+                AddEvent --> GoogleCalAPI
+                ParseDateTime --> GoogleCalAPI
+
+                ListEmails --> GmailAPI[(Gmail API)]
+                ReadEmail --> GmailAPI
+                ReplyEmail --> GmailAPI
+
+                CreateForm --> GoogleFormsAPI[(Google Forms API)]
+                ManualForm --> GoogleFormsAPI
+
+                AnalyzeSheet --> DebateSystem[Multi-Agent Debate]
+                QueryData --> DebateSystem
+                EditDoc --> DebateSystem
+                ReplyEmail --> DebateSystem
+                CreateForm --> DebateSystem
+
+                DebateSystem --> GoogleAPI
+                DebateSystem --> GoogleSheetsAPI
+                DebateSystem --> GoogleDocsAPI
+                DebateSystem --> GmailAPI
+                DebateSystem --> GoogleFormsAPI
+
+                GoogleAPI --> Response([Return Result])
+                GoogleSheetsAPI --> Response
+                GoogleDocsAPI --> Response
+                GoogleCalAPI --> Response
+                GmailAPI --> Response
+                GoogleFormsAPI --> Response
+
+                style DebateSystem fill:#ff9999
+                style GoogleAPI fill:#99ff99
+                style GoogleSheetsAPI fill:#ffcc99
+                style GoogleDocsAPI fill:#ffcc99
+                style GoogleCalAPI fill:#ffcc99
+                style GmailAPI fill:#ffcc99
+                style GoogleFormsAPI fill:#ffcc99
+            </div>
+        </div>
+
+        <!-- DIAGRAM 7: ARSITEKTUR -->
+        <div class="diagram-section" id="diagram7">
+            <div class="diagram-title">7. Diagram Arsitektur Sistem Lengkap</div>
+            <div class="mermaid">
+                graph TB
+                subgraph "USER INTERFACE"
+                Telegram[Telegram Bot]
+                end
+
+                subgraph "HANDLER LAYER"
+                AIHandler[AI Handler]
+                VoiceRouter[Voice Router]
+                MemoryHandler[Memory Handler]
+                LifeOSHandler[LifeOS Handler]
+                GoogleHandlers[Google Services Handlers]
+                end
+
+                subgraph "SERVICE LAYER"
+                AIClient[AI Client<br />DeepSeek API]
+                MemoryService[Memory Service<br />Pinecone]
+                GoogleClient[Google Client<br />OAuth2]
+                NewsService[News Service]
+                YouTubeService[YouTube Service]
+                end
+
+                subgraph "AI PROCESSING"
+                DebateSystem[4-Stage Debate System]
+                SimpleChat[Simple Chat]
+                ThinkingMode[Thinking Mode]
+                ImageGen[DALL-E Image Gen]
+                Whisper[TTS/Whisper]
+                end
+
+                subgraph "EXTERNAL SERVICES"
+                DeepSeekAPI[DeepSeek API<br />Chat + Reasoner]
+                OpenAIAPI[OpenAI API<br />Embedding + Vision + TTS]
+                PineconeDB[(Pinecone<br />Vector Database)]
+                GoogleAPIs[Google APIs<br />Drive, Sheets, Docs, etc]
+                GoogleSearch[Google Custom Search]
+                end
+
+                subgraph "DATA STORAGE"
+                SQLiteDB[(SQLite DB<br />User Settings)]
+                GoogleSheets[(Google Sheets<br />LifeOS Data)]
+                end
+
+                Telegram --> AIHandler
+                Telegram --> VoiceRouter
+                Telegram --> MemoryHandler
+                Telegram --> LifeOSHandler
+                Telegram --> GoogleHandlers
+
+                AIHandler --> AIClient
+                AIHandler --> DebateSystem
+                AIHandler --> SimpleChat
+                AIHandler --> ThinkingMode
+                AIHandler --> ImageGen
+
+                VoiceRouter --> AIClient
+                VoiceRouter --> Whisper
+                VoiceRouter --> MemoryService
+                VoiceRouter --> GoogleClient
+
+                MemoryHandler --> MemoryService
+                MemoryHandler --> AIClient
+                MemoryHandler --> DebateSystem
+
+                LifeOSHandler --> GoogleClient
+                LifeOSHandler --> MemoryService
+
+                GoogleHandlers --> GoogleClient
+                GoogleHandlers --> DebateSystem
+
+                AIClient --> DeepSeekAPI
+                AIClient --> OpenAIAPI
+                AIClient --> GoogleSearch
+
+                MemoryService --> PineconeDB
+                MemoryService --> OpenAIAPI
+
+                GoogleClient --> GoogleAPIs
+
+                DebateSystem --> DeepSeekAPI
+                DebateSystem --> GoogleSearch
+                DebateSystem --> PineconeDB
+
+                SimpleChat --> DeepSeekAPI
+                ThinkingMode --> DeepSeekAPI
+                ImageGen --> OpenAIAPI
+                Whisper --> OpenAIAPI
+
+                LifeOSHandler --> GoogleSheets
+                AIClient --> SQLiteDB
+
+                style DebateSystem fill:#ff9999
+                style PineconeDB fill:#99ccff
+                style DeepSeekAPI fill:#ffcc99
+                style OpenAIAPI fill:#ffcc99
+                style GoogleAPIs fill:#99ff99
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Mobile Menu Toggle Function
+        function toggleMobileMenu() {
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+            
+            if (hamburger && navLinks) {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            }
+        }
+
+        // Documentation Toggle Function
+        function toggleDocs(docId) {
+            const docContent = document.getElementById(docId);
+            const docHeader = docContent.previousElementSibling;
+            
+            if (docContent && docHeader) {
+                docContent.classList.toggle('active');
+                docHeader.classList.toggle('active');
+            }
+        }
+
+        // Close mobile menu when clicking on a link
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) {
+                        const hamburger = document.getElementById('hamburger');
+                        const navLinksEl = document.getElementById('navLinks');
+                        if (hamburger && navLinksEl) {
+                            hamburger.classList.remove('active');
+                            navLinksEl.classList.remove('active');
+                        }
+                    }
+                });
+            });
+        });
+
+        // Store original mermaid code before rendering
+        document.addEventListener('DOMContentLoaded', () => {
+            const mermaidDivs = document.querySelectorAll('.mermaid');
+            mermaidDivs.forEach(div => {
+                const code = div.textContent || div.innerText || '';
+                if (code) {
+                    div.setAttribute('data-code', code);
+                }
+            });
+        });
+
+        // Initialize Mermaid
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            },
+            securityLevel: 'loose'
+        });
+
+        // Flowchart Animation Engine
+        class FlowchartAnimator {
+            constructor(containerId, mermaidCode) {
+                this.containerId = containerId;
+                this.mermaidCode = mermaidCode;
+                this.graph = this.parseMermaidGraph(mermaidCode);
+                this.currentNode = null;
+                this.isPlaying = false;
+                this.speed = 1000; // ms per transition
+                this.marker = null;
+                this.animationFrame = null;
+                this.isPaused = false;
+                this.visitedNodes = new Set(); // Track visited nodes for DFS traversal
+                this.dfsPath = []; // Store DFS path
+                this.dfsIndex = 0; // Current index in DFS path
+
+                this.initControls();
+            }
+
+            // Simple parser for Mermaid syntax to build adjacency list
+            parseMermaidGraph(code) {
+                const adjList = {};
+                const nodes = new Set();
+                
+                // Normalize code - handle multiline
+                const lines = code.split('\n').map(l => l.trim()).filter(l => l && !l.startsWith('style') && !l.startsWith('graph'));
+
+                // Regex to match connections like A --> B, A -.-> B, A ==> B
+                // Pattern: Source -->|label| Target or Source --> Target
+                // Node names can be alphanumeric with underscores
+                const connectionRegex = /\b([A-Za-z][A-Za-z0-9_]*)\s*(?:-->|-\.->|==>|--o|--x|-\.-)\s*(?:\|[^|]*\|)?\s*([A-Za-z][A-Za-z0-9_]*)\b/g;
+
+                // Extract all connections
+                let match;
+                const allConnections = [];
+                
+                for (const line of lines) {
+                    // Reset regex for each line
+                    connectionRegex.lastIndex = 0;
+                    while ((match = connectionRegex.exec(line)) !== null) {
+                        const source = match[1];
+                        const target = match[2];
+                        allConnections.push({ source, target });
+                        nodes.add(source);
+                        nodes.add(target);
+                    }
+                }
+
+                // Build adjacency list
+                allConnections.forEach(({ source, target }) => {
+                    if (!adjList[source]) adjList[source] = [];
+                    if (!adjList[source].includes(target)) {
+                        adjList[source].push(target);
+                    }
+                });
+
+                // Find start node - first node that appears as source but never as target
+                const targetNodes = new Set(allConnections.map(c => c.target));
+                let startNode = null;
+                for (const node of nodes) {
+                    if (!targetNodes.has(node)) {
+                        startNode = node;
+                        break;
+                    }
+                }
+                
+                // Fallback: use first node in first connection
+                if (!startNode && allConnections.length > 0) {
+                    startNode = allConnections[0].source;
+                }
+
+                return { adj: adjList, start: startNode, nodes: [...nodes] };
+            }
+
+            // DFS traversal to visit all nodes without repetition
+            buildDFSPath(startNode, visited = new Set(), path = []) {
+                if (!startNode) return path;
+                
+                // If already visited in this traversal, skip
+                if (visited.has(startNode)) {
+                    return path;
+                }
+                
+                // Mark as visited and add to path
+                visited.add(startNode);
+                path.push(startNode);
+                
+                // Visit all neighbors recursively
+                const neighbors = this.graph.adj[startNode] || [];
+                for (const neighbor of neighbors) {
+                    if (!visited.has(neighbor)) {
+                        this.buildDFSPath(neighbor, visited, path);
+                    }
+                }
+                
+                return path;
+            }
+
+            initControls() {
+                const container = document.getElementById(this.containerId);
+                if (!container) return;
+                
+                // Check if controls already exist to prevent duplication
+                const existingControls = container.querySelector('.anim-controls');
+                if (existingControls) return;
+                
+                const controlsDiv = document.createElement('div');
+                controlsDiv.className = 'anim-controls';
+
+                controlsDiv.innerHTML = `
+                    <button class="anim-btn" onclick="animators['${this.containerId}'].togglePlay()" title="Play/Pause" id="btn-play-${this.containerId}">▶</button>
+                    <button class="anim-btn" onclick="animators['${this.containerId}'].reset()" title="Reset">⏮</button>
+                    <div style="border-left: 1px solid #ccc; height: 20px; margin: 0 5px;"></div>
+                    <button class="anim-btn" onclick="animators['${this.containerId}'].changeSpeed(1.5)" title="Slower">🐌</button>
+                    <span id="speed-display-${this.containerId}" style="min-width: 40px; text-align: center;">1x</span>
+                    <button class="anim-btn" onclick="animators['${this.containerId}'].changeSpeed(0.66)" title="Faster">🐇</button>
+                    <div class="anim-status" id="status-${this.containerId}">Ready</div>
+                `;
+
+                // Insert after the mermaid div
+                const mermaidDiv = container.querySelector('.mermaid');
+                if (mermaidDiv && mermaidDiv.nextSibling) {
+                    mermaidDiv.parentNode.insertBefore(controlsDiv, mermaidDiv.nextSibling);
+                } else if (mermaidDiv) {
+                    mermaidDiv.parentNode.appendChild(controlsDiv);
+                }
+            }
+
+            getSvgNode(nodeId) {
+                const container = document.getElementById(this.containerId);
+                if (!container) return null;
+                
+                const svg = container.querySelector('svg');
+                if (!svg) return null;
+
+                // Get all node groups in order they appear in the graph
+                const allNodeGroups = Array.from(svg.querySelectorAll('g.node'));
+                if (allNodeGroups.length === 0) return null;
+
+                // Pattern 1: Try to find by ID attribute (Mermaid pattern: flowchart-NodeName-XX)
+                let node = null;
+                for (const n of allNodeGroups) {
+                    const id = n.id || '';
+                    if (id.includes(nodeId) || n.querySelector(`[id*="${nodeId}"]`)) {
+                        node = n;
+                        break;
+                    }
+                }
+
+                // Pattern 2: Match by position/index in the parsed graph
+                // This works because we parse nodes in the order they appear
+                if (!node && this.graph.nodes) {
+                    const nodeIndex = this.graph.nodes.indexOf(nodeId);
+                    if (nodeIndex >= 0 && nodeIndex < allNodeGroups.length) {
+                        node = allNodeGroups[nodeIndex];
+                    }
+                }
+
+                // Pattern 3: Try first node if nodeId matches start node
+                if (!node && this.graph.start === nodeId && allNodeGroups.length > 0) {
+                    // Try to find start node - usually first in SVG or first in our parsed list
+                    if (allNodeGroups.length > 0) {
+                        node = allNodeGroups[0];
+                    }
+                }
+
+                return node;
+            }
+
+            createMarker() {
+                if (this.marker) return;
+                this.marker = document.createElement('div');
+                this.marker.className = 'user-marker';
+                this.marker.innerHTML = '👤'; // User icon
+                document.body.appendChild(this.marker);
+            }
+
+            removeMarker() {
+                if (this.marker) {
+                    this.marker.remove();
+                    this.marker = null;
+                }
+            }
+
+            updateStatus(text) {
+                const el = document.getElementById(`status-${this.containerId}`);
+                if (el) el.innerText = text;
+            }
+
+            togglePlay() {
+                const btn = document.getElementById(`btn-play-${this.containerId}`);
+                if (this.isPlaying && !this.isPaused) {
+                    this.pause();
+                    btn.innerHTML = '▶'; // Show play
+                } else {
+                    this.play();
+                    btn.innerHTML = '⏸'; // Show pause
+                }
+            }
+
+            play() {
+                if (!this.graph.start) return;
+
+                this.isPlaying = true;
+                this.isPaused = false;
+                this.createMarker();
+
+                // Build DFS path if not already built or if reset
+                if (this.dfsPath.length === 0 || !this.currentNode) {
+                    this.visitedNodes.clear();
+                    this.dfsPath = this.buildDFSPath(this.graph.start);
+                    this.dfsIndex = 0;
+                }
+
+                if (!this.currentNode) {
+                    this.startSequence();
+                } else {
+                    this.nextStep(); // Resume
+                }
+            }
+
+            pause() {
+                this.isPaused = true;
+                // Timeout is handled in nextStep, it checks isPaused
+            }
+
+            reset() {
+                this.isPlaying = false;
+                this.isPaused = false;
+                this.currentNode = null;
+                this.visitedNodes.clear();
+                this.dfsPath = [];
+                this.dfsIndex = 0;
+                this.removeMarker();
+                this.updateStatus("Ready");
+                clearTimeout(this.animationTimer);
+                const btn = document.getElementById(`btn-play-${this.containerId}`);
+                if (btn) btn.innerHTML = '▶';
+
+                // Remove styling - only in this diagram's container
+                const container = document.getElementById(this.containerId);
+                if (container) {
+                    container.querySelectorAll('.active-node').forEach(el => el.classList.remove('active-node'));
+                }
+            }
+
+            changeSpeed(multiplier) {
+                // Determine new speed
+                let newSpeed = this.speed * multiplier;
+                // Clamp speed
+                if (newSpeed < 200) newSpeed = 200;
+                if (newSpeed > 5000) newSpeed = 5000;
+
+                this.speed = newSpeed;
+
+                // Calc display (approx)
+                const displaySpeed = (1000 / this.speed).toFixed(1) + 'x';
+                document.getElementById(`speed-display-${this.containerId}`).innerText = displaySpeed;
+            }
+
+            startSequence() {
+                if (!this.graph.start) {
+                    this.updateStatus("Error: No start node found");
+                    return;
+                }
+                
+                // Ensure DFS path is built
+                if (this.dfsPath.length === 0) {
+                    this.dfsPath = this.buildDFSPath(this.graph.start);
+                    this.dfsIndex = 0;
+                }
+                
+                this.currentNode = this.graph.start;
+                this.dfsIndex = 0;
+                this.visitedNodes.clear();
+                this.visitedNodes.add(this.currentNode);
+                
+                if (this.moveToNode(this.currentNode)) {
+                    this.nextStep();
+                } else {
+                    this.updateStatus("Error: Could not find start node in diagram");
+                }
+            }
+
+            async nextStep() {
+                if (!this.isPlaying || this.isPaused) return;
+
+                // Use DFS path traversal instead of random
+                if (this.dfsPath.length === 0) {
+                    this.updateStatus("Error: No path available");
+                    return;
+                }
+
+                // Move to next node in DFS path
+                if (this.dfsIndex >= this.dfsPath.length - 1) {
+                    // Finished all nodes
+                    this.updateStatus(`✅ Selesai (${this.dfsPath.length} node ditelusuri)`);
+                    setTimeout(() => {
+                        if (this.isPlaying) {
+                            this.isPlaying = false;
+                            this.updateStatus("Siap untuk memulai lagi");
+                            const btn = document.getElementById(`btn-play-${this.containerId}`);
+                            if (btn) btn.innerHTML = '▶';
+                        }
+                    }, 2000);
+                    return;
+                }
+
+                const curr = this.currentNode || this.dfsPath[this.dfsIndex];
+                const nextIndex = this.dfsIndex + 1;
+                const nextNode = this.dfsPath[nextIndex];
+
+                this.updateStatus(`Visiting: ${curr} (${nextIndex}/${this.dfsPath.length})`);
+
+                // Delay before moving to next
+                this.animationTimer = setTimeout(() => {
+                    if (this.isPaused || !this.isPlaying) return;
+
+                    if (!nextNode) {
+                        this.updateStatus("Selesai (End)");
+                        return;
+                    }
+
+                    this.animateMovement(curr, nextNode, () => {
+                        this.currentNode = nextNode;
+                        this.dfsIndex = nextIndex;
+                        this.visitedNodes.add(nextNode);
+                        this.nextStep();
+                    });
+
+                }, this.speed / 2); // Wait half cycle at node
+            }
+
+            moveToNode(nodeId) {
+                const nodeEl = this.getSvgNode(nodeId);
+                if (!nodeEl) {
+                    // If node not found, try to continue anyway - log warning only
+                    console.warn(`Node ${nodeId} not found in diagram ${this.containerId}`);
+                    return false;
+                }
+
+                // Highlight - remove previous highlights in this diagram only
+                const container = document.getElementById(this.containerId);
+                if (container) {
+                    container.querySelectorAll('.active-node').forEach(el => el.classList.remove('active-node'));
+                }
+                nodeEl.classList.add('active-node');
+
+                // Position marker
+                const rect = nodeEl.getBoundingClientRect();
+                const isMobile = window.innerWidth <= 768;
+                const markerSize = isMobile ? 10 : 15; // Half of marker size
+                const centerX = rect.left + rect.width / 2 + window.scrollX;
+                const centerY = rect.top + rect.height / 2 + window.scrollY;
+
+                if (this.marker) {
+                    this.marker.style.left = (centerX - markerSize) + 'px';
+                    this.marker.style.top = (centerY - markerSize) + 'px';
+                }
+                
+                return true;
+            }
+
+            animateMovement(fromId, toId, onComplete) {
+                const fromEl = this.getSvgNode(fromId);
+                const toEl = this.getSvgNode(toId);
+
+                if (!fromEl || !toEl) {
+                    if (onComplete) onComplete();
+                    return;
+                }
+
+                // Coordinates with Scroll Offset
+                const fromRect = fromEl.getBoundingClientRect();
+                const toRect = toEl.getBoundingClientRect();
+
+                const isMobile = window.innerWidth <= 768;
+                const markerSize = isMobile ? 10 : 15; // Half of marker size
+                const startX = fromRect.left + fromRect.width / 2 + window.scrollX;
+                const startY = fromRect.top + fromRect.height / 2 + window.scrollY;
+                const endX = toRect.left + toRect.width / 2 + window.scrollX;
+                const endY = toRect.top + toRect.height / 2 + window.scrollY;
+
+                // Simple interpolation loop
+                const startTime = performance.now();
+                const duration = this.speed;
+
+                const animate = (time) => {
+                    if (this.isPaused || !this.isPlaying) return;
+
+                    let progress = (time - startTime) / duration;
+                    if (progress > 1) progress = 1;
+
+                    // Lerp position
+                    const curX = startX + (endX - startX) * progress;
+                    const curY = startY + (endY - startY) * progress;
+
+                    if (this.marker) {
+                        this.marker.style.left = (curX - markerSize) + 'px';
+                        this.marker.style.top = (curY - markerSize) + 'px';
+                    }
+
+                    if (progress < 1) {
+                        requestAnimationFrame(animate);
+                    } else {
+                        // Arrived - try to move to node, but continue even if it fails
+                        this.moveToNode(toId);
+                        if (onComplete) onComplete();
+                    }
+                };
+
+                requestAnimationFrame(animate);
+            }
+        }
+
+        // Global store for animators
+        const animators = {};
+
+        // Initialize animators after Mermaid renders
+        function initializeAnimators() {
+            const diagrams = document.querySelectorAll('.diagram-section');
+
+            diagrams.forEach(section => {
+                const id = section.id;
+                if (!id) return;
+                
+                const mermaidDiv = section.querySelector('.mermaid');
+                if (!mermaidDiv) return;
+
+                // Get source code from data-code attribute (saved before Mermaid render)
+                let mermaidCode = mermaidDiv.getAttribute('data-code') || '';
+                
+                // Fallback: try to get from text content
+                if (!mermaidCode || mermaidCode.trim() === '') {
+                    mermaidCode = mermaidDiv.textContent || mermaidDiv.innerText || '';
+                }
+
+                // Only initialize if we have code
+                if (mermaidCode && mermaidCode.trim() !== '') {
+                    try {
+                        // Check if SVG is rendered
+                        const svg = section.querySelector('svg');
+                        if (svg && svg.querySelector('g.node')) {
+                            animators[id] = new FlowchartAnimator(id, mermaidCode);
+                        }
+                    } catch (error) {
+                        console.warn(`Failed to initialize animator for ${id}:`, error);
+                    }
+                }
+            });
+        }
+
+        // Wait for Mermaid to finish rendering
+        window.addEventListener('load', () => {
+            // Use MutationObserver to wait for SVG elements
+            const checkInterval = setInterval(() => {
+                const allSvgs = document.querySelectorAll('.mermaid svg');
+                if (allSvgs.length > 0) {
+                    clearInterval(checkInterval);
+                    // Give Mermaid a bit more time to finish styling
+                    setTimeout(initializeAnimators, 500);
+                }
+            }, 200);
+
+            // Timeout after 5 seconds
+            setTimeout(() => {
+                clearInterval(checkInterval);
+                initializeAnimators();
+            }, 5000);
+        });
+    </script>
+
+</body>
+
+</html>
